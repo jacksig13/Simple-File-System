@@ -1,5 +1,5 @@
 all:
-	gcc -g fs.c filefs.c -o filefs
+	gcc -g fs.c main.c -o fs
 
 clean:
 	rm filefs

@@ -14,9 +14,6 @@
 
 #include "fs.h"
 
-int zerosize(int fd);
-void exitusage(char* pname);
-
 
 int main(int argc, char** argv){
   
@@ -65,14 +62,16 @@ int main(int argc, char** argv){
       fsname = strdup(optarg);
       break;
     default:
-      exitusage(argv[0]);
+      fprintf(stderr, "Usage %s [-l] [-a path] [-e path] [-r path] -f name\n", argv[0]);
+      exit(EXIT_FAILURE);
     }
   }
   
   //check for '-f' argument (file system name)
   if (!filefsname){
     printf("no fs name...\n");
-    exitusage(argv[0]);
+    fprintf(stderr, "Usage %s [-l] [-a path] [-e path] [-r path] -f name\n", argv[0]);
+    exit(EXIT_FAILURE);
   }
 
   //Open file system in Read/Write mode - if new file system is defined it is created
@@ -81,7 +80,9 @@ int main(int argc, char** argv){
     exit(EXIT_FAILURE);
   }
   else{
-    if (zerosize(fd)) { 
+    struct stat stats;
+    fstat(fd, &stats);
+    if (stats.st_size == 0) { 
       newfs = 1;
     }
     
@@ -106,8 +107,6 @@ int main(int argc, char** argv){
   if (newfs){
     formatfs();
   }
-
-  loadfs();
   
   if (add){
     addfilefs(toadd);
@@ -128,17 +127,4 @@ int main(int argc, char** argv){
   unmapfs();
   
   return 0;
-}
-
-int zerosize(int fd){
-  struct stat stats;
-  fstat(fd, &stats);
-  if(stats.st_size == 0)
-    return 1;
-  return 0;
-}
-
-void exitusage(char* pname){
-  fprintf(stderr, "Usage %s [-l] [-a path] [-e path] [-r path] -f name\n", pname);
-  exit(EXIT_FAILURE);
 }

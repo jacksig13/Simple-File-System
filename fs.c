@@ -190,10 +190,10 @@ int findReference(int iNode) {
 }
 
 // Adds a new file to the file system
-void addFile(char* fname) {
+void addfilefs(char* fname) {
   // Find the first free block, inode, and reference block
   int emptyBlock = findBlock(); //empty block index in freeblocklist of 10000
-  int emptyINode = find_iNode(); //empty inode index in inode list of 100
+  int emptyINode = findINode(); //empty inode index in inode list of 100
   int emptyRefBlock = 0; //block in directory inode that will store 'dir' struct for a file
   int parentNode = 0; //parent directory to store 'dir' struct in - initially 'root' (inode 0)
   int iNodeBlock = 1;
@@ -366,7 +366,7 @@ int findFile(int curIndex, int pathDepth, int curDepth, char* filePath[]) {
 }
 
 // Function to remove file from file system
-void removeFile(char* fname) {
+void removefilefs(char* fname) {
   // Parse file path
   char* filePath[100];
   int pathDepth = 0;
@@ -429,7 +429,7 @@ void removeFile(char* fname) {
 }
 
 // Function to extract file from file system
-void extractFile(char* fname){
+void extractfilefs(char* fname){
   // Parse file path to find depth
   char* filePath[100];
   int pathDepth = 0;

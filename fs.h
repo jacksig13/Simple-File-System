@@ -14,7 +14,6 @@ extern unsigned char* fs;
 void mapfs(int fd);
 void unmapfs();
 void formatfs();
-void loadfs();
 void lsfs();
 void addfilefs(char* fname);
 void removefilefs(char* fname);

@@ -35,11 +35,11 @@ The program takes the following command line arguments:
 For example:
 
 ```
-./filefs -f fs1 -l
-./filefs -f fs1 -a file1.txt 
-./filefs -f fs1 -a file2.txt 
-./filefs -f fs1 -r file2.txt
-./filefs -f fs1 -e file1.txt
+./fs -f fs1 -l
+./fs -f fs1 -a file1.txt 
+./fs -f fs1 -a file2.txt 
+./fs -f fs1 -r file2.txt
+./fs -f fs1 -e file1.txt
 ```
 
 ## File System Layout

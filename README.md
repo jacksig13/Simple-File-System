@@ -4,7 +4,7 @@ This program implements a simple file system in a memory mapped file. The file s
 
 ## Files
 
-**filefs.c** - Main driver program 
+**main.c** - Main driver program 
 
 - Initializes file system 
 - Parses command line arguments
